@@ -1,61 +1,64 @@
 package com.joao.Q7;
 
-import com.joao.Q5.LinkedList;
+import com.joao.Q5.Node;
 
 public class Questao7 {
 
     public static void main(String[] args) {
 
-        LinkedList<String> list1 = new LinkedList<>();
+        Node<String> head = new Node<>("mensagem1");
 
-        list1.add("Texto1");
-        list1.add("Texto2");
-        list1.add("Texto3");
+        Node<String> second = new Node<>("mensagem2");
+        head.setNext(second);
 
-        LinkedList<String> list2 = new LinkedList<>();
+        Node<String> third = new Node<>("mensagem1");
+        second.setNext(third);
 
-        list2.add("Texto1");
-        list2.add("Texto2");
-        list2.add("Texto3");
 
-        boolean hasIntersection = getIntersection(list1,list2) != null;
 
-        System.out.println(hasIntersection);
+        Node<String> head2 = new Node<>("mensagem1");
+
+        Node<String> second2 = new Node<>("mensagem2");
+        head2.setNext(second2);
+
+        Node<String> third2 = new Node<>("mensagem1");
+        second2.setNext(third2);
+
+
+
+
+
+        boolean hasIntersection = getIntersection(head,head2) != null;
+        System.out.println("Possuem intercessão: "+hasIntersection);
 
 
 
         //CRIA E ADICIONA A MESMA REFERENCIA NAS DUAS LISTAS
-        LinkedList.Node<String> testNode = new LinkedList.Node<>("Eu sou a intercessão");
-
-        list1.add(testNode);
-        list2.add(testNode);
+        Node<String> testNode = new Node<String>("Eu sou a intercessão");
 
 
-        hasIntersection = getIntersection(list1,list2) != null;
+        third.setNext(testNode);
+        third2.setNext(testNode);
 
-        System.out.println(hasIntersection);
+
+
+        hasIntersection = getIntersection(head,head2) != null;
+
+        System.out.println("Possuem intercessão: "+hasIntersection);
 
 
     }
 
 
-    public static LinkedList.Node getIntersection(LinkedList left, LinkedList right){
+    public static Node getIntersection(Node left, Node right){
 
-
-
-        LinkedList.Node headA = left.getHead();
-        LinkedList.Node headB = right.getHead();
-
-        int len = (left.getSize() >= right.getSize())
-                ? right.getSize() : left.getSize();
-
-        for (int i = 0; i < len; i++) {
-            if(headA == headB){
-                return headA;
+        while(left != null){
+            if(left == right){
+                return left;
             }
 
-            headA = headA.getNext();
-            headB = headB.getNext();
+            left = left.getNext();
+            right = right.getNext();
         }
 
         return null;
