@@ -2,6 +2,8 @@ package com.joao.Q7;
 
 import com.joao.Q5.Node;
 
+import java.util.Hashtable;
+
 public class Questao7 {
 
     public static void main(String[] args) {
@@ -26,6 +28,8 @@ public class Questao7 {
 
 
 
+
+
         boolean hasIntersection = getIntersection(head,head2) != null;
         System.out.println("Possuem intercessão: "+hasIntersection);
 
@@ -38,6 +42,7 @@ public class Questao7 {
         third.setNext(testNode);
         second2.setNext(testNode);
 
+        testNode.setNext(new Node<>("ultimo No"));
 
 
         hasIntersection = getIntersection(head,head2) != null;
@@ -50,28 +55,30 @@ public class Questao7 {
 
     public static Node getIntersection(Node left, Node right){
 
-        if(left == right){
-            return left;
+
+        Hashtable<Node,Integer> nos = new Hashtable<>();
+
+
+        Node pNode = left;
+
+        while(pNode != null){
+            nos.put(pNode,new Integer(0));
+            pNode = pNode.getNext();
         }
 
-        while(left.getNext() != null || right.getNext() != null){
+        pNode = right;
 
+        while(pNode != null){
 
+            Integer n = nos.get(pNode);
 
-            if(left.getNext() != null){
-                left = left.getNext();
-            }
-            if(right.getNext() != null){
-                right = right.getNext();
-            }
-
-            if(left == right){
-                return left;
-            }
+            if(n != null) return pNode;
+            pNode = pNode.getNext();
         }
-
 
         return null;
+
+
 
     }
 }
