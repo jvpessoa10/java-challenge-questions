@@ -10,8 +10,12 @@ public class Questao5 {
         Node second = new Node("mensagem2");
         head.setNext(second);
 
-        Node third = new Node("mensagem1");
+        Node third = new Node("mensagem2");
         second.setNext(third);
+
+        Node fouth = new Node("mensagem3");
+        third.setNext(fouth);
+
 
         printList(head);
 
@@ -41,11 +45,14 @@ public class Questao5 {
         while(start != null){
             Node target = start.getNext();
 
-            while(target != null && target.getNext() != null){
-                if (start.getData().equals(target.getNext().getData())){
+            while(target != null){
+                System.out.println("start:"+start.getData());
+                System.out.println("target:"+target.getData());
+
+                if (start.getData().equals(target.getData())){
 
 
-                    target.setNext(target.getNext().getNext());
+                    start.setNext(target.getNext());
 
                 }
                 target = target.getNext();
