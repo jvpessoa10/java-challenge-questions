@@ -58,11 +58,10 @@ public class Questao7 {
 
         Hashtable<Node,Integer> nos = new Hashtable<>();
 
-
         Node pNode = left;
 
         while(pNode != null){
-            nos.put(pNode,new Integer(0));
+            nos.put(pNode,0);
             pNode = pNode.getNext();
         }
 
@@ -75,10 +74,7 @@ public class Questao7 {
             if(n != null) return pNode;
             pNode = pNode.getNext();
         }
-
         return null;
-
-
 
     }
 }
