@@ -21,8 +21,6 @@ public class Questao7 {
         Node<String> second2 = new Node<>("mensagem2");
         head2.setNext(second2);
 
-        Node<String> third2 = new Node<>("mensagem1");
-        second2.setNext(third2);
 
 
 
@@ -38,7 +36,7 @@ public class Questao7 {
 
 
         third.setNext(testNode);
-        third2.setNext(testNode);
+        second2.setNext(testNode);
 
 
 
@@ -52,14 +50,26 @@ public class Questao7 {
 
     public static Node getIntersection(Node left, Node right){
 
-        while(left != null){
+        if(left == right){
+            return left;
+        }
+
+        while(left.getNext() != null || right.getNext() != null){
+
+
+
+            if(left.getNext() != null){
+                left = left.getNext();
+            }
+            if(right.getNext() != null){
+                right = right.getNext();
+            }
+
             if(left == right){
                 return left;
             }
-
-            left = left.getNext();
-            right = right.getNext();
         }
+
 
         return null;
 
